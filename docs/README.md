@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: /hero.jpg
-heroText: abscdegs
+heroText: trefoils
 # tagline: '联系方式: work.travis@outlook.com'
 actionText: 快速阅读 →
 actionLink: /blog/
