@@ -2,7 +2,7 @@
 home: true
 heroImage: /hero.jpg
 heroText: trefoils-dev-bin-master
-tagline: 联系方式: 592926483@qq.com
+tagline: '联系方式: 592926483@qq.com'
 actionText: 快速阅读 →
 actionLink: /blog/
 features:
