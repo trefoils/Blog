@@ -1,19 +1,23 @@
+
+let nav = require("./router-config/nav");
+
+const sidebar = require("./router-config/side-bar");
+
+
 module.exports = {
   title: "vuepress",
   description: "vuepress-des",
-  head:[
-    [
-      'link',{icon:''}
-    ]
-  ],
   themeConfig:{
-    nav: [
-      {text: "主页", link: "/"      },
-      { text: "node", link: "/node/" },
-      { text: "前端", link: "/webframe/"},
-      { text: "数据库", link: "/database/"   },
-      { text: "android", link: "/android/"   },
-      { text: "面试问题", link: "/interview/" }
-    ]
+    repo: 'trefoils/Blog',
+    sidebarDepth: 2,
+    smoothScroll: true,
+
+    nav,
+    sidebar,
+    
+    docsDir: 'docs',
+    editLinks: true,
+    editLinkText: '在 Github 上编辑此页',
+    lastUpdated: '上次更新时间'
   }
 }
