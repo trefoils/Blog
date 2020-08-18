@@ -4,7 +4,12 @@ const blog = [
         collapsable: false,
         children: [
             'network/osi/osi',
-            'network/tcpip/tcpip'
+            'network/osi/osi-dfw',
+            'network/tcpip/tcpip',
+            'network/ip/ip',
+            'network/tcp/tcp',
+            'network/udp/udp',
+            'network/socket/socket'
         ]
     }
 ]
