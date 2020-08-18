@@ -1,24 +1,24 @@
 const nav = [
     {
-        text:"Blog",
-        link:"/view/blog/"
+        text:"博客",
+        link:"/blog/"
     },
+    // {
+    //     text:"Study",
+    //     items:[
+    //         {
+    //             text:'数据库',
+    //             link:'/study/database/'
+    //         },
+    //         {
+    //             text:'信息安全',
+    //             link:'/study/infomation/'
+    //         }
+    //     ]
+    // },
     {
-        text:"Study",
-        items:[
-            {
-                text:'数据库',
-                link:'/view/study/database/'
-            },
-            {
-                text:'信息安全',
-                link:'/view/study/infomation/'
-            }
-        ]
-    },
-    {
-        text:"About",
-        link:"/view/about/"
+        text:"关于",
+        link:"/about/"
     }
 ]
 

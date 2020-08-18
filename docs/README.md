@@ -1,10 +1,11 @@
 ---
 home: true
-heroText: trefoils-dev-bin-master
-tagline: '联系方式: 592926483@qq.com'
+heroImage: /images/homepage/wallhaven-76opry.png
+heroText: Trefoil
+# tagline: '联系方式: 592926483@qq.com'
 actionText: 快速阅读 →
 actionLink: /blog/
-features:
+# features:
 # - title: 积累
 #   details: 平时一些常用的技能的总结，防止遗忘
 # - title: 关于学习

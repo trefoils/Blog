@@ -1,18 +1,16 @@
 const blog = [
     {
-        title: 'javascript',
+        title: '网络编程',
         collapsable: false,
         children: [
-            {
-                items:'1',
-                link:''
-            }
+            'network/osi/osi',
+            'network/tcpip/tcpip'
         ]
     }
 ]
 
 const sidebar = {
-    '/view/blog/':blog
+    '/blog/':blog
 }
 
 module.exports = sidebar;

@@ -1,0 +1,50 @@
+Arguments: 
+  /Users/trefoil/.nvm/versions/node/v10.22.0/bin/node /usr/local/Cellar/yarn/1.22.4/libexec/bin/yarn.js
+
+PATH: 
+  /Users/trefoil/.nvm/versions/node/v10.22.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/trefoil/.nvm/versions/node/v10.22.0/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  10.22.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/vuepress: ETIMEDOUT
+      at Timeout._onTimeout (/usr/local/Cellar/yarn/1.22.4/libexec/lib/cli.js:141408:19)
+      at ontimeout (timers.js:436:11)
+      at tryOnTimeout (timers.js:300:5)
+      at listOnTimeout (timers.js:263:5)
+      at Timer.processTimers (timers.js:223:10)
+
+npm manifest: 
+  {
+    "name": "blogs",
+    "version": "1.0.0",
+    "description": "--- home: true heroImage: /hero.jpg heroText: travis # tagline: '联系方式: work.travis@outlook.com' actionText: 快速阅读 → actionLink: /blog/ features: - title: 积累   details: 平时一些常用的技能的总结，防止遗忘 - title: 关于学习   details: 螺旋式提升，一些阅读，一些实践，一些总结，持续更新 - title: 开源贡献   details: 热爱开源，忠于开源 footer: MIT Licensed | Copyright © 2020-present HondryTravis ---",
+    "main": "index.js",
+    "directories": {
+      "doc": "docs"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "docs:dev": "vuepress dev docs",
+      "docs:build": "vuepress build docs"
+    },
+    "devDependencies": {
+      "vuepress": "^1.5.2"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
