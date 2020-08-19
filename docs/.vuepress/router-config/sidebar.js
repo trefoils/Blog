@@ -11,6 +11,16 @@ const blog = [
             'network/udp/udp',
             'network/socket/socket'
         ]
+    },
+    {
+        title: 'Mac软件',
+        collapsable: false,
+        children: [
+            'mac/homebrew/brew',
+            'mac/nvm/nvm',
+            'mac/office2019/office2019',
+            'mac/oh-my-zsh/oh-my-zsh',
+        ]
     }
 ]
 
