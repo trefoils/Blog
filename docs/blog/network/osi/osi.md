@@ -5,7 +5,7 @@ OSI参考模型并非指一个现实的网络，它只是规定了各层的功�
 
 OSI参考模型将网络通信的工作划分为7个层次，由低到高分别为`物理层（Physical Layer）`、`数据链路层（Data Link Layer）`、`网络层（Network Layer）`、`传输层（Transport Layer）`、`会话层（Session Layer）`、`表示层（PresentationLayer）`和`应用层（Application Layer)`
 
-::: tips Tips
+::: tip Tips
 物理层、数据链路层和网络层属于OSI参考模型中的低3层，负责创建网络通信连接的链路；其他4层负责端到端的数据通信。每一层都完成特定的功能，并为其上层提供服务。
 :::
 
