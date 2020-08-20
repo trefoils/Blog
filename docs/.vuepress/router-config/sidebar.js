@@ -1,6 +1,6 @@
-const blog = [
+const Blog = [
     {
-        title: '网络编程',
+        title: '基础协议',
         collapsable: false,
         children: [
             'network/osi/osi',
@@ -8,8 +8,7 @@ const blog = [
             'network/tcpip/tcpip',
             'network/ip/ip',
             'network/tcp/tcp',
-            'network/udp/udp',
-            'network/socket/socket'
+            'network/udp/udp'
         ]
     },
     {
@@ -24,8 +23,45 @@ const blog = [
     }
 ]
 
+//数据库
+const DataBase = [
+    {
+        title: '数据库',
+        collapsable: false,
+        children: [
+            'network/basic/basic',
+        ]
+    },
+]
+//信息安全
+const Infomation = [
+    {
+        title: '信息安全',
+        collapsable: false,
+        children: [
+            'basic/basic',
+        ]
+    }
+]
+//网络编程
+const Network = [
+    {
+        title: '网络编程',
+        collapsable: false,
+        children: [
+            'basic/basic',
+            'cs-mode/cs-mode',
+            'p2p-mode/p2p-mode',
+        ]
+    }
+]
+
 const sidebar = {
-    '/blog/':blog
+    '/blog/':Blog,
+    '/study/network/':Network,
+    '/study/database/':DataBase,
+    '/study/infomation/':Infomation,
+    
 }
 
 module.exports = sidebar;
