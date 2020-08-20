@@ -29,7 +29,6 @@ const DataBase = [
         title: '数据库',
         collapsable: false,
         children: [
-            'network/basic/basic',
         ]
     },
 ]
@@ -60,7 +59,7 @@ const sidebar = {
     '/blog/':Blog,
     '/study/network/':Network,
     '/study/database/':DataBase,
-    '/study/infomation/':Infomation,
+    '/study/infomation-safe/':Infomation,
     
 }
 

@@ -12,7 +12,7 @@ const nav = [
             },
             {
                 text:'信息安全',
-                link:'/study/infomation/'
+                link:'/study/infomation-safe/'
             },
             {
                 text:'网络编程',
