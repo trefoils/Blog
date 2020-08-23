@@ -55,11 +55,26 @@ const Network = [
     }
 ]
 
+const Interview = [
+    {
+        title: '前端面试题',
+        collapsable: false,
+        children: [
+            'html/html',
+            'css/css',
+            'js/js',
+            'vue/vue',
+            'extend/extend'
+        ]
+    }
+]
+
 const sidebar = {
     '/blog/':Blog,
     '/study/network/':Network,
     '/study/database/':DataBase,
     '/study/infomation-safe/':Infomation,
+    '/interview/':Interview
     
 }
 

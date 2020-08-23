@@ -4,6 +4,10 @@ const nav = [
         link:"/blog/"
     },
     {
+        text:"前端面试题",
+        link:"/interview/"
+    },
+    {
         text:"专业课",
         items:[
             {

@@ -149,4 +149,4 @@ Internet是基于TCP/IP协议栈的，TCP/IP协议栈的特点是两头大、中
 
 ## 7.可靠的传输控制协议(TCP)
 
-[TCP](/blog/network/tcp/tcp)的详细介绍
+[TCP](/blog/network/tcp/tcp.md)的详细介绍
