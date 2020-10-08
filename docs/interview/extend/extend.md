@@ -221,19 +221,19 @@ methods:{
 
 <img src="/images/interview/mvvm.png" alt="image-20201008183850853" style="zoom:20%;" />
 
-### `$route`和`$router`的区别
+### 12、`$route`和`$router`的区别
 
 `$route`是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。
 
 `$router`是“路由实例”对象包括了路由的跳转方法，钩子函数等。
 
-### 12、SSR了解吗？
+### 13、SSR了解吗？
 
 SSR也就是服务端渲染，`也就是将Vue在客户端把标签渲染成HTML的工作放在服务端完成，然后再把html直接返回给客户端`。
 
 SSR有着更好的SEO、并且首屏加载速度更快等优点。不过它也有一些缺点，比如我们的开发条件会受到限制，服务器端渲染只支持`beforeCreate`和`created`两个钩子，当我们需要一些外部扩展库时需要特殊处理，服务端渲染应用程序也需要处于Node.js的运行环境。还有就是服务器会有更大的负载需求。
 
-### 13、前端安全
+### 14、前端安全
 
 (1) `XSS`（Cross Site Scripting）跨站脚本攻击
 
@@ -330,7 +330,7 @@ a站前端将token存在当前页面中（比如表单中的input隐藏域，met
 
   
 
-### 14、性能优化
+### 15、性能优化
 
 (1)	从输入URL到页面加载完成的过程：
 * 首先通过DNS（域名解析）把URL解析为对应的IP地址 (DNS解析)
