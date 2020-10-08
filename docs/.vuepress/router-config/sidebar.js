@@ -1,6 +1,6 @@
 const Blog = [
     {
-        title: '基础协议',
+        title: '基础网络协议',
         collapsable: false,
         children: [
             'network/osi/osi',
@@ -9,6 +9,13 @@ const Blog = [
             'network/ip/ip',
             'network/tcp/tcp',
             'network/udp/udp'
+        ]
+    },
+    {
+        title: '前端性能优化',
+        collapsable: false,
+        children: [
+            'web-optimization/web-optimization'
         ]
     },
     {
@@ -55,6 +62,7 @@ const Network = [
     }
 ]
 
+//面试题
 const Interview = [
     {
         title: '前端面试题',

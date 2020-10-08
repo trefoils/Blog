@@ -12,5 +12,8 @@ features:
   details: 软件工程相关专业的知识汇总
 - title: 总结
   details: 开发中遇到问题的总结，学习方法总结
-footer: MIT Licensed | Copyright © 2020-present
 ---
+<ClientOnly>
+  <home-page></home-page>
+</ClientOnly>
+
