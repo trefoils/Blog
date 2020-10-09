@@ -80,6 +80,14 @@ CSS Hack大致有3种表现形式，CSS属性前缀法、选择器前缀法以�
 * 选择器前缀法(即选择器Hack)：例如 IE6能识别*html .class{}，IE7能识别*+html .class{}或者*:first-child+html .class{}。
 * IE条件注释法(即HTML条件注释Hack)：针对所有IE(注：IE10+已经不再支持条件注释)： <!–[if IE]>IE浏览器显示的内容 <![endif]–>，针对IE6及以下版本： <!–[if lt IE 6]>只在IE6-显示的内容 <![endif]–>。这类Hack不仅对CSS生效，对写在判断语句里面的所有代码都会生效。
 
+### 5、CSS 阻塞 I/O 初探
+
+1. css 会阻塞 js 加载么？
+css加载会阻塞后面JS脚本/语句
+
+2. CSS 影响 DOM 渲染么？
+css影响DOM渲染，但是不会影响DOM解析
+
  
 
 ## 二、Js
