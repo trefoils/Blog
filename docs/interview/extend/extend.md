@@ -440,4 +440,17 @@ Etag就像一个指纹，资源变化都会导致ETag变化，跟最后修改时
 * 某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，这种修改无法判断(或者说UNIX记录MTIME只能精确到秒)；
 * 某些服务器不能精确的得到文件的最后修改时间。
 
- 
+### 16、webpack中hash、chunkhash和contenthash三者的区别
+**hash**
+hash是跟整个项目的构建相关，构建生成的文件hash值都是一样的，所以hash计算是跟整个项目的构建相关，同一次构建过程中生成的hash都是一样的，只要项目里有文件更改，整个项目构建的hash值都会更改。
+
+如果出口是hash，那么一旦针对项目中任何一个文件的修改，都会构建整个项目，重新获取hash值，缓存的目的将失效。
+
+**chunkhash**
+chunkhash和hash不一样，它根据不同的入口文件(Entry)进行依赖文件解析、构建对应的chunk，生成对应的hash值。我们在生产环境里把一些公共库和程序入口文件区分开，单独打包构建，接着我们采用chunkhash的方式生成hash值，那么只要我们不改动公共库的代码，就可以保证其hash值不会受影响。
+
+**contenthash**
+生产环境中我们会用webpack的插件，将css代码打单独提取出来打包。这时候chunkhash的方式就不够灵活，因为只要同一个chunk里面的js修改后，css的chunk的hash也会跟随着改动。因此我们需要contenthash。
+
+contenthash表示由文件内容产生的hash值，内容不同产生的contenthash值也不一样。在项目中，通常做法是把项目中css都抽离出对应的css文件来加以引用。
+
