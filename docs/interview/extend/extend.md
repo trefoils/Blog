@@ -18,30 +18,7 @@ CSS中盒模型有两种，`w3c标准盒模型`和`ie盒模型(怪异盒模型)`
 当设置为box-sizing:border-box时，将采用怪异模式解析计算；
 :::
 
-### 2、`flex`布局，如何把8个元素分两行摆放？
-
-包裹元素
-
-```js
-Flex-flow: row wrap
-Align-content: flex-start
-```
-
-被包裹元素
-
-```javascript
-Flex:0 0 25%
-```
-
-`Flex`属性是`flex-grow`,` flex-shrink`, `flex-basis`的简写，默认值为`0，1，auto`
-
-`Flex-grow: 0`默认不放大
-
-`Flex-shrink: 0`不缩小
-
-`Flex-basis: auto`项目占据主轴的空间
-
-### 3、BFC是什么？触发BFC的条件是什么？有哪些应用场景？
+### 2、BFC是什么？触发BFC的条件是什么？有哪些应用场景？
 
 BFC是css布局的对象和基本单位，Bfc就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。
 
@@ -66,8 +43,55 @@ Float属性不为none、position位absolute或者fixed、overflow不为visible�
 * 防止元素被浮动元素覆盖
 
 * 自适应两栏布局
+### 3、`flex`布局，如何把8个元素分两行摆放？
 
-### 4、前端中的hack是什么意思?常见的hack技术？
+```html
+//包裹元素
+Flex-flow: row wrap;
+Align-content: flex-start
+
+//被包裹元素
+Flex:0 0 25%;
+```
+
+`Flex`属性是`flex-grow`,` flex-shrink`, `flex-basis`的简写，默认值为`0，1，auto`
+
+`Flex-grow: 0`默认不放大
+
+`Flex-shrink: 0`不缩小
+
+`Flex-basis: auto`项目占据主轴的空间
+
+### 4、如何通过flex实现一个容器内的三个元素，左右固定，中间自适应，并且上下居中的布局
+```html
+<div class="box">
+  <div class="inner1"></div>
+  <div class="inner2"></div>
+  <div class="inner3"></div>
+</div>
+
+<style>
+.box{
+  display: flex;
+  height: 300px;
+  align-items: center;
+  border:1px  solid  gray;
+}
+.box div{
+  height: 100px;
+  border:1px solid red;
+}
+.inner1,.inner3{
+  width: 200px;
+  background: wheat;
+}
+.inner2{
+  background: tomato;
+  flex:1;
+}
+</style>
+```
+### 5、前端中的hack是什么意思?常见的hack技术？
 针对不同浏览器编写带有前缀的css 就是 css hack,也就是大家所说的前端hack了
 ::: tip css hack原理
 针对不同的浏览器编写不同的样式代码
@@ -80,7 +104,7 @@ CSS Hack大致有3种表现形式，CSS属性前缀法、选择器前缀法以�
 * 选择器前缀法(即选择器Hack)：例如 IE6能识别*html .class{}，IE7能识别*+html .class{}或者*:first-child+html .class{}。
 * IE条件注释法(即HTML条件注释Hack)：针对所有IE(注：IE10+已经不再支持条件注释)： <!–[if IE]>IE浏览器显示的内容 <![endif]–>，针对IE6及以下版本： <!–[if lt IE 6]>只在IE6-显示的内容 <![endif]–>。这类Hack不仅对CSS生效，对写在判断语句里面的所有代码都会生效。
 
-### 5、CSS 阻塞 I/O 初探
+### 6、CSS 阻塞 I/O 初探
 
 1. css 会阻塞 js 加载么？
 css加载会阻塞后面JS脚本/语句
@@ -92,7 +116,33 @@ css影响DOM渲染，但是不会影响DOM解析
 
 ## 二、Js
 
-### 0.1、post和get的区别
+### 0.0、事件委托是什么？其优点是什么？
+事件委托 本质上是利用了浏览器事件冒泡的机制。因为事件在冒泡过程中会上传到父节点，并且父节点可以通过事件对象获取到 目标节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为事件代理。
+
+使用事件代理我们可以不必要为每一个子元素都绑定一个监听事件，这样减少了内存上的消耗。并且使用事件代理我们还可以实现事件的动态绑定，比如说新增了一个子节点，我们并不需要单独地为它添加一个监听事件，它所发生的事件会交给父元素中的监听函数来处理。
+
+### 0.1、什么是跨域？如何解决？
+同源策略会阻止一个域的javascript脚本和另外一个域的内容进行交互。所谓同源（即指在同一个域）就是两个页面具有相同的协议（protocol），主机（host）和端口号（port），当一个请求url的协议、域名、端口三者之间任意一个与当前页面url不同即为跨域
+
+跨域解决方法
+1. 设置document.domain解决无法读取非同源网页的 Cookie问题
+
+> 因为浏览器是通过document.domain属性来检查两个页面是否同源，因此只要通过设置相同的document.domain，两个页面就可以共享Cookie（此方案仅限主域相同，子域不同的跨域应用场景。）
+
+2. 跨文档通信 API：window.postMessage()
+
+> 调用postMessage方法实现父窗口http://test1.com向子窗口http://test2.com发消息（子窗口同样可以通过该方法发送消息给父窗口）
+
+3. JSONP
+
+> JSONP(JSON with Padding)是JSON的一种“使用模式”，可用于解决主流浏览器的跨域数据访问的问题。
+>
+> 不支持post请求，因为其本质上是通过script标签获取数据, script标签显然只支持GET
+
+4. CORS
+> 是现代浏览器支持跨域资源请求的一种最常用的方式。一般需要后端人员在处理请求的时候，添加允许跨域的相关操作：
+
+### 0.2、post和get的区别
 **总结说明:**
 
 * HTTP报文层面：GET将请求信息放在URL，POST放在报文体中。
@@ -112,10 +162,39 @@ css影响DOM渲染，但是不会影响DOM解析
 幂等通俗的来讲就是指同一个请求执行多次和仅执行一次的效果完全相等。这里来扯出幂等主要是为了处理同一个请求重复发送的情况，假如在请求响应之前失去连接，如果这个请求时幂等的，那么就可以放心的重发一次请求。所以可以得出get请求时幂等的，可以重复发送请求，post请求时不幂等的，重复请求可能会发生无法预知的后果。
 
 
-### 0.2、jsonp是什么？它支持psot请求么，为什么？
-JSONP(JSON with Padding)是JSON的一种“使用模式”，可用于解决主流浏览器的跨域数据访问的问题。
+### 0.3、否理解参数 arguments 对象？如何将他转化成为标准数组
+通常方法是使用 Array.prototype.slice ，像这样：
+```javascript
+var args = Array.prototype.slice.call(arguments);
+```
 
-不支持post请求，因为其本质上是通过script标签获取数据, script标签显然只支持GET
+### 0.4、 如何判断当前脚本运行在浏览器还是 node 环境中？（阿里）
+```javascript
+this === window ? 'browser' : 'node';
+
+//通过判断 Global 对象是否为 window，如果不为 window，当前脚本没有运行在浏览器中。
+```
+### 0.5、哪些操作会造成内存泄漏？
+
+1. 意外的全局变量
+
+2. 被遗忘的计时器或回调函数
+
+3. 脱离 DOM 的引用
+
+4. 闭包
+::: tip 原因
+第一种情况是我们由于使用未声明的变量，而意外的创建了一个全局变量，而使这个变量一直留在内存中无法被回收。
+
+第二种情况是我们设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留
+在内存中，而无法被回收。
+
+第三种情况是我们获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回
+收。
+
+第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。
+:::
+
 
 ### 1、new一个新实例的过程是怎样的？
 1. 创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
@@ -124,7 +203,7 @@ JSONP(JSON with Padding)是JSON的一种“使用模式”，可用于解决主�
 
 ### 2、对闭包的看法，为什么要用闭包？说一下闭包的原理以及应用场景？
 
-**闭包**: 函数执行后返回结果是一个内部函数，并被外部变量所引用，如果内部函数持有被执行函数作用域de变量，即形成了闭包。
+**闭包**: 闭包是指有权访问另一个函数作用域内变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，创建的函数可以 访问到当前函数的局部变量。
 
 可以在内部函数访问到外部函数作用域，使用闭包，一可以读取函数中的变量，二可以将函数中的变量存储在内存中，保护变量不被污染。正因闭包会把函数中的变量值存储在内存中，会对内存有消耗，所以不能滥用闭包，否则会影响性能，造成内存泄漏。当不需要使用闭包时，要及时释放内存，可将内层函数对象的变量赋值为null
 
@@ -134,43 +213,79 @@ JSONP(JSON with Padding)是JSON的一种“使用模式”，可用于解决主�
 
 ### 3、Common.js, AMD, CMD以及ES6的模块的区别
 
-**`Common.js`**：同步加载方案，在服务端，模块都存储在本地，读取速度非常快，所以这样不会有问题，但是在浏览器端，由于网络原因，更合理的方案是使用异步加载。
-
-`Common.js`的特点
-
-* 一个文件就是一个模块，拥有单独地作用域
-
-* 普通方式定义的变量，函数，对象都属于该模块内
-
-* 通过require来加载模块，通过exports和module.exports来baolu模块中的内容
-
-* 当exports和module.exports同时存在时，module.exports会覆盖exports
-
-* exports就是module.exports的子集
-
-**`ES6`**：在语言标准的层面上，实现了模块功能，而且实现的相当简单，Es6的模块不是对象，import命令会被js引擎静态分析，在编泽时就引入模块代码，也正因为这个，使得静态分析成为可能
+**`Common.js`**：同步加载方案，它通过 require 来引入模块，通过 module.exports 定义模块的输出接口。在服务端，模块都存储在本地，读取速度非常快，所以这样不会有问题，但是在浏览器端，由于网络原因，更合理的方案是使用异步加载。
 
 **`AMD`**:异步加载模块。它是一个在浏览器端模块化开发规范，所有依赖这个模块的语句，都定在个回调函数中，等到加载完成后，这个回调函数才会执行
 ::: tip require.js
 使用require.js实现AMD规范的模块化：用require.configure指定引用路径，用define()定义模块，用require()加载模块。
 Require.js主要解决的问题
 * 文件可能有依赖关系，被依赖的文件需要早于依赖它的文件加载到浏览器
+
 * Js加载的时候浏览器会停止页面渲染，加载文件愈多，页面相应事件就越长，异步前置加载。
+
+* require.js 的核心原理是通过动态创建 script 脚本来异步引入模块，然后对每个脚本的 load 事件进行监听，如果每个脚本都加载完成了，再调用回调函数。
 :::
 
-**`CMD`**:是另一种js模块化方案，他与AMD类似，不同点在于AMD推崇前置依赖、提前执行、CMD打崇依赖就近、延迟执行。
+**`CMD`**:是另一种js模块化方案，他与AMD类似，不同点在于AMD推崇前置依赖、提前执行、CMD推崇依赖就近、延迟执行。
 
-因为CMD推崇一个文件一个模块，所以经常用文件名作为模块id;CMD打推崇依赖就近，所以一般不在define的参数中写依赖
+```javascript
+//cmd
+define(function(require, exports, module){
+  var a = require('./a') //依赖可以就近书写
+  a.doSth()
+})
+//amd
+define(['./a'], function(){
+  //依赖必须一开始就写好
+  a.doSth()
+})
+```
 
-### 4、微任务与宏任务
+**`ES6`**：在语言标准的层面上，实现了模块功能，而且实现的相当简单，Es6的模块不是对象，import命令会被js引擎静态分析，在编泽时就引入模块代码，也正因为这个，使得静态分析成为可能
+
+::: tip ES6 模块与 CommonJS 模块、AMD、CMD 的差异。
+* CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。CommonJS 模块输出的是值的，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令 import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。
+
+* CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。CommonJS 模块就是对象，即在输入时是先加载整个模块，生成一个对象，然后再从这个对象上面读取方法，这种加载称为“运行时加载”。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
+:::
+
+
+### 4、 JS事件循环怎么理解(微任务与宏任务)?
+
+js代码执行过程中会有很多任务，这些任务总的分成两类：`同步任务`和`异步任务`
+
+1. 首先js 是单线程运行的，在代码执行的时候，通过将不同函数的执行上下文压入执行栈中来保证代码的有序执行。
+
+2. 在执行同步代码的时候，如果遇到了异步事件，js 引擎并不会一直等待其返回结果，而是会将这个事件挂起，继续执行执行栈中的其他任务
+
+3. 当同步事件执行完毕后，再将异步事件对应的回调加入到与当前执行栈中不同的另一个任务队列中等待执行。
+
+4. 任务队列可以分为`宏任务`对列和`微任务`对列，当当前执行栈中的事件执行完毕后，js 引擎首先会判断微任务对列中是否有任务可以执行，如果有就将微任务队首的事件压入栈中执行。
+
+5.	当微任务对列中的任务都执行完成后再去判断宏任务对列中的任务。
 
 **`宏任务`**：当前调用栈中执行的代码称为宏任务
 
 **`微任务`**：当前宏任务执完(此次事件循环执行完),在下一个宏任务开始之前需要执行的任务，可以理解为回调事件
 
-`宏任务`的事件放在`callback queue`中，由事件触发线程维护;微任务的事件放在微任务队列中，由`js引擎线程`维护
+例如：
+```javascript
+setTimeout(function(){
+  console.log(1)
+},0)
+new Promise(function(resolve,reject){
+  console.log(2)
+  resolve()
+}).then(function(){
+  console.log(3)
+})
+process.nextTick(function(){
+  console.log(4)
+})
+console.log(5)
+```
+（第一轮：主线程开始执行，遇到setTimeout，将setTimeout的回调函数丢到宏任务队列中，在往下执行new Promise立即执行，输出2，then的回调函数丢到微任务队列中，再继续执行，遇到process.nextTick，同样将回调函数扔到为任务队列，再继续执行，输出5，当所有同步任务执行完成后看有没有可以执行的微任务，发现有then函数和nextTick两个微任务，先执行哪个呢？process.nextTick指定的异步任务总是发生在所有异步任务之前，因此先执行process.nextTick输出4然后执行then函数输出3，第一轮执行结束。第二轮：从宏任务队列开始，发现setTimeout回调，输出1执行完毕，因此结果是25431）
 
-在挂起任务时， js引擎将所有任务按照类别分到这两个队伍中，首先在Macrotask的队列中取出第一个任务，执行完毕后取出microtask队列中的所有任务，按顺序执行;之后再取microtask任务，周而复始，直至两个队列的任务都取完。
 
 ### 5、介绍下原型链
 
@@ -285,6 +400,71 @@ methods:{
 `$route`是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。
 
 `$router`是“路由实例”对象包括了路由的跳转方法，钩子函数等。
+
+### 12.0、vue的全局守卫
+1. 你可以使用 `router.beforeEach` 注册一个全局前置守卫：
+```js
+const router = new VueRouter({ ... })
+
+router.beforeEach((to, from, next) => {
+  // ...
+})
+//to: Route: 即将要进入的目标 路由对象
+//from: Route: 当前导航正要离开的路由
+//next: Function: 一定要调用该方法来 resolve 这个钩子。
+```
+
+### 12.0、子组建如何向父组建传值，sync修饰符是干什么的，原理是什么？
+
+### 12.1、`sync`修饰符
+在有些情况下，我们可能需要对一个 prop 进行“双向绑定”。不幸的是，真正的双向绑定会带来维护上的问题，因为子组件可以变更父组件，且在父组件和子组件都没有明显的变更来源。
+
+这也是为什么我们推荐以 update:myPropName 的模式触发事件取而代之。举个例子，在一个包含 title prop 的假设的组件中，我们可以用以下方法表达对其赋新值的意图：
+```js
+this.$emit('update:title', newTitle)
+```
+然后父组件可以监听那个事件并根据需要更新一个本地的数据 property。例如：
+```html
+<text-document
+  v-bind:title="doc.title"
+  v-on:update:title="doc.title = $event"
+></text-document>
+```
+为了方便起见，我们为这种模式提供一个缩写，即 .sync 修饰符：
+```html
+<text-document v-bind:title.sync="doc.title"></text-document>
+```
+### 12.2、计算属性缓存 vs 方法
+```html
+<p>Reversed message: "{{ reversedMessage() }}"</p>
+```
+```js
+// 在组件中
+methods: {
+  reversedMessage: function () {
+    return this.message.split('').reverse().join('')
+  }
+}
+```
+
+我们可以将同一函数定义为一个方法而不是一个计算属性。两种方式的最终结果确实是完全相同的。然而，不同的是计算属性是基于它们的响应式依赖进行缓存的。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+
+这也同样意味着下面的计算属性将不再更新，因为 Date.now() 不是响应式依赖：
+```js
+computed: {
+  now: function () {
+    return Date.now()
+  }
+}
+```
+相比之下，每当触发重新渲染时，调用方法将总会再次执行函数。
+
+我们为什么需要缓存？假设我们有一个性能开销比较大的计算属性 A，它需要遍历一个巨大的数组并做大量的计算。然后我们可能有其他的计算属性依赖于 A。如果没有缓存，我们将不可避免的多次执行 A 的 getter！如果你不希望有缓存，请用方法来替代。
+### 12.3、vuex有哪几种属性？为什么修改state的数据必须要提交一个`mutation`呢
+分别是 State、 Getter、Mutation 、Action、 Module
+
+我们通过提交 mutation 的方式，而非直接改变 store.state.count，是因为我们想要更明确地追踪到状态的变化。这个简单的约定能够让你的意图更加明显，这样你在阅读代码的时候能更容易地解读应用内部的状态改变。此外，这样也让我们有机会去实现一些能记录每次状态改变，保存状态快照的调试工具。有了它，我们甚至可以实现如时间穿梭般的调试体验。
+
 
 ### 13、SSR了解吗？
 
@@ -513,3 +693,78 @@ chunkhash和hash不一样，它根据不同的入口文件(Entry)进行依赖文
 
 contenthash表示由文件内容产生的hash值，内容不同产生的contenthash值也不一样。在项目中，通常做法是把项目中css都抽离出对应的css文件来加以引用。
 
+### ES6 模块与 CommonJS 模块的差异
+它们有三个重大差异。
+
+* CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。
+
+* CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
+
+* CommonJS 模块的require()是同步加载模块，ES6 模块的import命令是异步加载，有一个独立的模块依赖的解析阶段。
+
+第二个差异是因为 CommonJS 加载的是一个对象（即module.exports属性），该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。
+
+::: tip 注意
+require和import不会循环引用, 因为模块执行后会把导出的值缓存，下次再require或者import不会再次执行
+:::
+
+下面重点解释第一个差异。
+
+CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。请看下面这个模块文件lib.js的例子。
+```js
+// lib.js
+var counter = 3;
+function incCounter() {
+  counter++;
+}
+module.exports = {
+  counter: counter,
+  incCounter: incCounter,
+};
+```
+上面代码输出内部变量counter和改写这个变量的内部方法incCounter。然后，在main.js里面加载这个模块。
+```js
+// main.js
+var mod = require('./lib');
+
+console.log(mod.counter);  // 3
+mod.incCounter();
+console.log(mod.counter); // 3
+```
+上面代码说明，lib.js模块加载以后，它的内部变化就影响不到输出的mod.counter了。这是因为mod.counter是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。
+```js
+// lib.js
+var counter = 3;
+function incCounter() {
+  counter++;
+}
+module.exports = {
+  get counter() {
+    return counter
+  },
+  incCounter: incCounter,
+};
+```
+上面代码中，输出的counter属性实际上是一个取值器函数。现在再执行main.js，就可以正确读取内部变量counter的变动了。
+```
+$ node main.js
+3
+4
+```
+ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
+
+还是举上面的例子。
+```js
+// lib.js
+export let counter = 3;
+export function incCounter() {
+  counter++;
+}
+
+// main.js
+import { counter, incCounter } from './lib';
+console.log(counter); // 3
+incCounter();
+console.log(counter); // 4
+```
+上面代码说明，ES6 模块输入的变量counter是活的，完全反应其所在模块lib.js内部的变化。。
